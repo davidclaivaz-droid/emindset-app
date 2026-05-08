@@ -15,6 +15,11 @@ let colorBySection = {}; // { [sectionTitle]: color }
 
 const $ = (sel) => document.querySelector(sel);
 
+
+window.exportPdf = async function exportPdf() {
+  // ... pdf code ...
+};
+
 function shuffleInPlace(arr){
   for (let i = arr.length - 1; i > 0; i--){
     const j = Math.floor(Math.random() * (i + 1));
@@ -160,12 +165,6 @@ function renderResults(){
   }).join("");
 
   $("#resultsTable").innerHTML = rowsHtml;
-
-
-async function exportPdf() {
-  // ... pdf code ...
-}
-
 
 async function exportPdf() {
   const { jsPDF } = window.jspdf;
