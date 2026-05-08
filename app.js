@@ -16,9 +16,58 @@ let colorBySection = {}; // { [sectionTitle]: color }
 const $ = (sel) => document.querySelector(sel);
 
 
-window.exportPdf = async function exportPdf() {
-  // ... pdf code ...
-};
+function exportPdf(event) {
+  event.preventDefault();
+
+  const jsPDF = window.jspdf?.jsPDF || window.jsPDF;
+  const pdf = new jsPDF("p", "mm", "a4");
+
+  // Date & time (CET)
+  const now = new Date();
+  const dateStr = new Intl.DateTimeFormat("en-GB", {
+    dateStyle: "full",
+    timeStyle: "long",
+    timeZone: "Europe/Paris"
+  }).format(now) + " (CET)";
+
+  pdf.setFont("Helvetica", "bold");
+  pdf.setFontSize(18);
+  pdf.text("Entrepreneurial Mindset – Results", 105, 18, { align: "center" });
+
+  pdf.setFont("Helvetica", "normal");
+  pdf.setFontSize(10);
+  pdf.text(`Date & time: ${dateStr}`, 105, 26, { align: "center" });
+
+  let y = 40;
+  pdf.setFontSize(12);
+  pdf.text("Category scores:", 14, y);
+  y += 8;
+
+  document.querySelectorAll("#resultsTable .legend-row").forEach(row => {
+    const title = row.querySelector(".legend-title")?.innerText ?? "";
+    const score = row.querySelector(".legend-score")?.innerText ?? "";
+    pdf.setFontSize(10);
+    pdf.text(`${title}: ${score}`, 14, y);
+    y += 6;
+  });
+
+  html2canvas(document.getElementById("chart"), {
+    scale: 2,
+    useCORS: true
+  }).then(canvas => {
+    const imgData = canvas.toDataURL("image/png");
+
+    pdf.addPage();
+    pdf.setFontSize(14);
+    pdf.text("Radar profile", 105, 16, { align: "center" });
+
+    const w = 170;
+    const h = (canvas.height * w) / canvas.width;
+    pdf.addImage(imgData, "PNG", 20, 25, w, h);
+
+    pdf.save("Entrepreneurial_Mindset_Results.pdf");
+  });
+}
 
 function shuffleInPlace(arr){
   for (let i = arr.length - 1; i > 0; i--){
@@ -165,78 +214,8 @@ function renderResults(){
   }).join("");
 
   $("#resultsTable").innerHTML = rowsHtml;
-
-async function exportPdf() {
-   alert("ExportPdf function entered");
-  const jsPDF = window.jspdf?.jsPDF || window.jsPDF;
-
-  // --- Time handling ---
-  const now = new Date();
-
-  // Option A: user local time
-  const localTime = now.toLocaleString();
-
-  // Option B: CET time (explicit)
-  const cetTime = new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "full",
-    timeStyle: "long",
-    timeZone: "Europe/Paris"
-  }).format(now) + " (CET)";
-
-  // ✅ Choose which one to show:
-  const timeLabel = cetTime; // <-- change to localTime if you prefer
-
-  // --- Create PDF ---
-  const pdf = new jsPDF("p", "mm", "a4");
-  const pageWidth = pdf.internal.pageSize.getWidth();
-
-  pdf.setFont("Helvetica", "bold");
-  pdf.setFontSize(18);
-  pdf.text("Entrepreneurial Mindset – Results", pageWidth / 2, 18, { align: "center" });
-
-  pdf.setFont("Helvetica", "normal");
-  pdf.setFontSize(10);
-  pdf.text(`Date & time: ${timeLabel}`, pageWidth / 2, 26, { align: "center" });
-
-  let y = 38;
-
-  // --- Category table ---
-  pdf.setFont("Helvetica", "bold");
-  pdf.setFontSize(13);
-  pdf.text("Category scores", 14, y);
-  y += 8;
-
-  const rows = document.querySelectorAll("#resultsTable .legend-row");
-  pdf.setFont("Helvetica", "normal");
-  pdf.setFontSize(10);
-
-  rows.forEach(row => {
-    const title = row.querySelector(".legend-title")?.innerText ?? "";
-    const score = row.querySelector(".legend-score")?.innerText ?? "";
-
-    pdf.text(`${title}: ${score}`, 14, y);
-    y += 6;
-  });
-
-  // --- New page for radar chart ---
-  pdf.addPage();
-
-  pdf.setFont("Helvetica", "bold");
-  pdf.setFontSize(13);
-  pdf.text("Radar profile", pageWidth / 2, 18, { align: "center" });
-
-  const chartCanvas = document.getElementById("chart");
-  const chartImage = await html2canvas(chartCanvas, { scale: 2 });
-  const imgData = chartImage.toDataURL("image/png");
-
-  const imgWidth = pageWidth - 30;
-  const imgHeight = (chartImage.height * imgWidth) / chartImage.width;
-
-  pdf.addImage(imgData, "PNG", 15, 30, imgWidth, imgHeight);
-
-  // --- Save PDF ---
-  pdf.save("Entrepreneurial_Mindset_Results.pdf");
 }
+
   
 // Chart
 const labels = sectionTitles;
