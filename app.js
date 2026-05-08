@@ -167,7 +167,7 @@ function renderResults(){
   $("#resultsTable").innerHTML = rowsHtml;
 
 async function exportPdf() {
-  const { jsPDF } = window.jspdf;
+  const jsPDF = window.jspdf?.jsPDF || window.jsPDF;
 
   // --- Time handling ---
   const now = new Date();
