@@ -16,26 +16,32 @@
   <main class="container">
 
     <!-- RESULTS (TOP) -->
-    <section id="results" class="results hidden">
-      <div class="results-head">
-        <div>
-          <h2>Results</h2>
-          <p id="resultsMeta" class="muted"></p>
-        </div>
-        <button id="btnReset" class="secondary">Reset answers</button>
-      </div>
+   
+<section id="results" class="results hidden">
+  <div class="results-head">
+    <div>
+      <h2>Results</h2>
+      <p id="resultsMeta" class="muted"></p>
+    </div>
+    <button id="btnReset" class="secondary">Reset answers</button>
+  </div>
 
-      <div class="results-grid">
-        <div class="card">
-          <canvas id="chart" height="240"></canvas>
-          <p class="muted small">Each category has its own color.</p>
-        </div>
-        <div class="card">
-          <h3 class="h3">Category breakdown</h3>
-          <div id="resultsTable"></div>
-        </div>
-      </div>
-    </section>
+  <!-- Breakdown first -->
+  <div class="card">
+    <h3 class="h3">Category breakdown</h3>
+    <div id="resultsTable"></div>
+  </div>
+
+  <!-- Big chart below -->
+  <div class="card">
+    <h3 class="h3">Radar profile</h3>
+    <div class="chart-wrap">
+      <canvas id="chart"></canvas>
+    </div>
+    <p class="muted small">Radar chart compares your average score across categories.</p>
+  </div>
+</section>
+
 
     <!-- PROGRESS -->
     <section class="controls">
