@@ -282,7 +282,6 @@ function renderResults() {
 
   
 // Chart
-const labels = sectionTitles;
 const values = labels.map(t => averages[t] ?? 0);
 
 // Use per-category colors for the radar POINTS (one per axis)
