@@ -374,7 +374,7 @@ async function init(){
 
   // Build stable section color mapping in section order
   
-const sectionOrder = [];
+sectionOrder = [];
 colorBySection = {};
 
 model.sections.forEach((sec, idx) => {
