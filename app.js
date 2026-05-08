@@ -160,7 +160,79 @@ function renderResults(){
   }).join("");
 
   $("#resultsTable").innerHTML = rowsHtml;
- 
+
+
+async function exportPdf() {
+  const { jsPDF } = window.jspdf;
+
+  // --- Time handling ---
+  const now = new Date();
+
+  // Option A: user local time
+  const localTime = now.toLocaleString();
+
+  // Option B: CET time (explicit)
+  const cetTime = new Intl.DateTimeFormat("en-GB", {
+    dateStyle: "full",
+    timeStyle: "long",
+    timeZone: "Europe/Paris"
+  }).format(now) + " (CET)";
+
+  // ✅ Choose which one to show:
+  const timeLabel = cetTime; // <-- change to localTime if you prefer
+
+  // --- Create PDF ---
+  const pdf = new jsPDF("p", "mm", "a4");
+  const pageWidth = pdf.internal.pageSize.getWidth();
+
+  pdf.setFont("Helvetica", "bold");
+  pdf.setFontSize(18);
+  pdf.text("Entrepreneurial Mindset – Results", pageWidth / 2, 18, { align: "center" });
+
+  pdf.setFont("Helvetica", "normal");
+  pdf.setFontSize(10);
+  pdf.text(`Date & time: ${timeLabel}`, pageWidth / 2, 26, { align: "center" });
+
+  let y = 38;
+
+  // --- Category table ---
+  pdf.setFont("Helvetica", "bold");
+  pdf.setFontSize(13);
+  pdf.text("Category scores", 14, y);
+  y += 8;
+
+  const rows = document.querySelectorAll("#resultsTable .legend-row");
+  pdf.setFont("Helvetica", "normal");
+  pdf.setFontSize(10);
+
+  rows.forEach(row => {
+    const title = row.querySelector(".legend-title")?.innerText ?? "";
+    const score = row.querySelector(".legend-score")?.innerText ?? "";
+
+    pdf.text(`${title}: ${score}`, 14, y);
+    y += 6;
+  });
+
+  // --- New page for radar chart ---
+  pdf.addPage();
+
+  pdf.setFont("Helvetica", "bold");
+  pdf.setFontSize(13);
+  pdf.text("Radar profile", pageWidth / 2, 18, { align: "center" });
+
+  const chartCanvas = document.getElementById("chart");
+  const chartImage = await html2canvas(chartCanvas, { scale: 2 });
+  const imgData = chartImage.toDataURL("image/png");
+
+  const imgWidth = pageWidth - 30;
+  const imgHeight = (chartImage.height * imgWidth) / chartImage.width;
+
+  pdf.addImage(imgData, "PNG", 15, 30, imgWidth, imgHeight);
+
+  // --- Save PDF ---
+  pdf.save("Entrepreneurial_Mindset_Results.pdf");
+}
+  
 // Chart
 const labels = sectionTitles;
 const values = labels.map(t => averages[t] ?? 0);
