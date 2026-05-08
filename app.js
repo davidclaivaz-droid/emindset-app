@@ -240,6 +240,7 @@ async function init(){
 
   // Render
   renderQuestions();
+  updateProgress();
 
   // Button after questions
   $("#btnShowResults").addEventListener("click", renderResults);
