@@ -280,7 +280,6 @@ function renderResults() {
 
 // Use per-category colors for the radar POINTS (one per axis)
 // Chart.js supports point* properties as arrays. [4](https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/docs/charts/radar.html)[5](https://stackoverflow.com/questions/28159595/chartjs-different-color-per-data-point)
-const pointColors = labels.map(t => colorBySection[t]);
 
 if (window.Chart) {
   try {
