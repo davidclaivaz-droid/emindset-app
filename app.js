@@ -287,7 +287,6 @@ if (window.Chart) {
   } catch (e) {
     console.error("Chart render error:", e);
   }
-}
 
 
   // Scroll to top so results are visible
