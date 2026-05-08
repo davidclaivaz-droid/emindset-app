@@ -288,7 +288,6 @@ if (window.Chart) {
     chart = new Chart($("#chart").getContext("2d"), {
       type: "radar",
       data: {
-        labels,
         datasets: [{
           label: "Average score",
           data: values,
