@@ -183,3 +183,15 @@ button:disabled{opacity:.55;cursor:not-allowed}
     height: 420px;        /* mobile size */
   }
 }
+
+/* Allow the questions to scroll independently */
+.questionnaire {
+  max-height: calc(100vh - 260px);
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Prevent sticky header from trapping scroll */
+.container {
+  overflow: visible;
+}
