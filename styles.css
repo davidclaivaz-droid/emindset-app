@@ -26,13 +26,19 @@ a{color:inherit}
 
 .container{max-width:1100px;margin:0 auto;padding:18px}
 
-.controls, .after-questions, .results{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:14px;
+.controls, .after-questions, .results{  
+background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+
+  /* 👇 STICKY BEHAVIOR */
+  position: sticky;
+  top: 12px;
+  z-index: 50;
 }
+
 
 .questionnaire{display:grid;gap:10px}
 
