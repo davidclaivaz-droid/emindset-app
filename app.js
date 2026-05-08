@@ -160,45 +160,79 @@ function renderResults(){
   }).join("");
 
   $("#resultsTable").innerHTML = rowsHtml;
+ 
+// Chart
+const labels = sectionTitles;
+const values = labels.map(t => averages[t] ?? 0);
 
-  // Chart
-  const labels = sectionTitles;
-  const data = labels.map(t => averages[t] ?? 0);
-  const colors = labels.map(t => colorBySection[t]);
+// Use per-category colors for the radar POINTS (one per axis)
+// Chart.js supports point* properties as arrays. [4](https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/docs/charts/radar.html)[5](https://stackoverflow.com/questions/28159595/chartjs-different-color-per-data-point)
+const pointColors = labels.map(t => colorBySection[t]);
 
-  if (window.Chart){
-    try{
-      if (chart) chart.destroy();
+if (window.Chart) {
+  try {
+    if (chart) chart.destroy();
 
-      chart = new Chart($("#chart").getContext("2d"), {
-        type: "bar",
-        data: {
-          labels,
-          datasets: [{
-            label: "Average score",
-            data,
-            backgroundColor: colors
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: { min: SCALE_MIN, max: SCALE_MAX }
-          },
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: (ctx) => `Avg: ${ctx.parsed.y.toFixed(2)}`
-              }
+    chart = new Chart($("#chart").getContext("2d"), {
+      type: "radar",
+      data: {
+        labels,
+        datasets: [{
+          label: "Average score",
+          data: values,
+          fill: true,
+          backgroundColor: "rgba(79, 140, 255, 0.15)",
+          borderColor: "rgba(79, 140, 255, 0.9)",
+          borderWidth: 2,
+
+          // Different colour per category point (array per point)
+          pointBackgroundColor: pointColors,
+          pointBorderColor: "#ffffff",
+          pointBorderWidth: 1,
+          pointRadius: 4,
+          pointHoverRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false, // allow the chart to fill .chart-wrap [3](https://www.chartjs.org/docs/latest/configuration/responsive.html)
+        scales: {
+          r: {
+            min: 1,
+            max: 5,
+            ticks: {
+              stepSize: 1
+            },
+            grid: {
+              color: "rgba(255,255,255,.10)"
+            },
+            angleLines: {
+              color: "rgba(255,255,255,.10)"
+            },
+            pointLabels: {
+              color: "rgba(231,238,247,.90)",
+              font: { size: 12 }
             }
           }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => `Avg: ${ctx.parsed.r.toFixed(2)}`
+            }
+          }
+        },
+        elements: {
+          line: { borderWidth: 2 }
         }
-      });
-    }catch(e){
-      console.error("Chart render error:", e);
-    }
+      }
+    });
+  } catch (e) {
+    console.error("Chart render error:", e);
   }
+}
+
 
   // Scroll to top so results are visible
   window.scrollTo({ top: 0, behavior: "smooth" });
