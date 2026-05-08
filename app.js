@@ -12,6 +12,7 @@ let chart = null;
 let allQuestions = [];
 let answers = {}; // { [qid]: { value, sectionTitle, reverse } }
 let colorBySection = {}; // { [sectionTitle]: color }
+let sectionOrder = [];
 
 const $ = (sel) => document.querySelector(sel);
 
