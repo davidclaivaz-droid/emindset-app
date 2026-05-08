@@ -163,6 +163,11 @@ function renderResults(){
 
 
 async function exportPdf() {
+  // ... pdf code ...
+}
+
+
+async function exportPdf() {
   const { jsPDF } = window.jspdf;
 
   // --- Time handling ---
