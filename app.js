@@ -181,24 +181,25 @@ function computeAverages(){
   return { averages, counts };
 }
 
-function renderResults(){
+
+function renderResults() {
   const { total, answered } = countAnswered();
   const { averages, counts } = computeAverages();
 
   // Show results at top
   $("#results").classList.remove("hidden");
+  $("#resultsMeta").textContent = `Answered items used in results: ${answered} / ${total}.`;
 
-  $("#resultsMeta").textContent =
-    `Answered items used in results: ${answered} / ${total}.`;
+  // Prefer stable order if you have it; otherwise fallback to keys
+  const sectionTitles = (Array.isArray(sectionOrder) && sectionOrder.length)
+    ? sectionOrder
+    : Object.keys(colorBySection);
 
-  // Build rows in a stable order (matching the sections order from JSON)
-  const sectionTitles = Object.keys(colorBySection);
-
+  // Build breakdown table
   const rowsHtml = sectionTitles.map(title => {
     const avg = averages[title];
     const used = counts[title] || 0;
     const color = colorBySection[title];
-
     const displayAvg = (avg == null) ? "—" : avg.toFixed(2);
 
     return `
@@ -214,6 +215,68 @@ function renderResults(){
   }).join("");
 
   $("#resultsTable").innerHTML = rowsHtml;
+
+  // --- Radar chart (INSIDE renderResults) ---
+  const labels = sectionTitles;
+  const values = labels.map(t => (averages[t] ?? 0));
+  const pointColors = labels.map(t => colorBySection[t]);
+
+  if (window.Chart) {
+    try {
+      if (chart) chart.destroy();
+
+      chart = new Chart($("#chart").getContext("2d"), {
+        type: "radar",
+        data: {
+          labels,
+          datasets: [{
+            label: "Average score",
+            data: values,
+            fill: true,
+            backgroundColor: "rgba(79, 140, 255, 0.15)",
+            borderColor: "rgba(79, 140, 255, 0.9)",
+            borderWidth: 2,
+            pointBackgroundColor: pointColors,
+            pointBorderColor: "#ffffff",
+            pointBorderWidth: 1,
+            pointRadius: 4,
+            pointHoverRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              min: 1,
+              max: 5,
+              ticks: { stepSize: 1 },
+              grid: { color: "rgba(255,255,255,.10)" },
+              angleLines: { color: "rgba(255,255,255,.10)" },
+              pointLabels: {
+                color: "rgba(231,238,247,.90)",
+                font: { size: 12 }
+              }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `Avg: ${ctx.parsed.r.toFixed(2)}`
+              }
+            }
+          },
+          elements: { line: { borderWidth: 2 } }
+        }
+      });
+    } catch (e) {
+      console.error("Chart render error:", e);
+    }
+  }
+
+  // Scroll to top so results are visible
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
   
