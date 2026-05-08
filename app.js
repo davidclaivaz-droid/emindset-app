@@ -218,7 +218,6 @@ function renderResults() {
   $("#resultsTable").innerHTML = rowsHtml;
 
   // --- Radar chart (INSIDE renderResults) ---
-  const labels = sectionTitles;
   const values = labels.map(t => (averages[t] ?? 0));
   const pointColors = labels.map(t => colorBySection[t]);
 
