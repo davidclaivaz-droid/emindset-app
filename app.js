@@ -356,6 +356,7 @@ model.sections.forEach((sec, idx) => {
   // Button after questions
   $("#btnShowResults").addEventListener("click", renderResults);
   $("#btnReset").addEventListener("click", resetAll);
+  $("#btnExportPdf").addEventListener("click", exportPdf);
 }
 
 init().catch(err => console.error("Init error:", err));
