@@ -220,10 +220,15 @@ async function init(){
   const model = await resp.json();
 
   // Build stable section color mapping in section order
-  colorBySection = {};
-  model.sections.forEach((sec, idx) => {
-    colorBySection[sec.title] = PALETTE[idx % PALETTE.length];
-  });
+  
+const sectionOrder = [];
+colorBySection = {};
+
+model.sections.forEach((sec, idx) => {
+  sectionOrder.push(sec.title);
+  colorBySection[sec.title] = PALETTE[idx % PALETTE.length];
+});
+
 
   // Flatten and shuffle questions (but keep section titles for scoring)
   allQuestions = [];
