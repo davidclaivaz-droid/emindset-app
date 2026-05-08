@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "title": "Entrepreneurial Mindset – Self‑Assessment",
+    "scale": {
+      "min": 1,
+      "max": 5,
+      "labels": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Neutral",
+        "4": "Agree",
+        "5": "Strongly agree"
+      }
+    }
+  },
+  "sections": [
+    {
+      "id": 1,
+      "title": "Creative thinking and information seeking",
+      "questions": [
+        { "id": "1.1", "text": "I regularly use group brainstorming sessions.", "reverseGuess": false },
+        { "id": "1.2", "text": "I regularly reach out to friends or colleagues to brainstorm.", "reverseGuess": false },
+        { "id": "1.3", "text": "I have already been told that I am thinking out of the box.", "reverseGuess": false },
+        { "id": "1.4", "text": "I encourage others to bring new ideas and suggestions to me.", "reverseGuess": false },
+        { "id": "1.5", "text": "I invest time in acquiring new knowledge that is not directly connected to my current activities.", "reverseGuess": false },
+        { "id": "1.6", "text": "I invest time in activities that are not directly connected to my day‑to‑day business and operations.", "reverseGuess": false },
+        { "id": "1.7", "text": "I invest time in activities that are not directly connected to my day‑to‑day activities.", "reverseGuess": false },
+        { "id": "1.8", "text": "I often speak with colleagues to understand how they solve problems.", "reverseGuess": false },
+        { "id": "1.9", "text": "I often speak with friends or colleagues to understand how they solve problems.", "reverseGuess": false }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Connection (ability to combine, see opportunities, critical thinking)",
+      "questions": [
+        { "id": "2.1", "text": "I actively look for and try to identify opportunities to do new things or to do things differently.", "reverseGuess": false },
+        { "id": "2.2", "text": "It is important for me to check my assumptions on a regular basis.", "reverseGuess": false },
+        { "id": "2.3", "text": "I can always identify alternative solutions when I have to take a decision.", "reverseGuess": false },
+        { "id": "2.4", "text": "I like to challenge the status quo and change things or processes around me.", "reverseGuess": false },
+        { "id": "2.5", "text": "I do not easily accept feedback if I am convinced that I am right.", "reverseGuess": true }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Spirit of initiative and autonomy",
+      "questions": [
+        { "id": "3.1", "text": "I feel comfortable organizing myself without anyone telling me how or what to prioritize.", "reverseGuess": false },
+        { "id": "3.2", "text": "I regularly use an inner compass I rely on to decide what direction to take.", "reverseGuess": false },
+        { "id": "3.3", "text": "I am comfortable starting new projects in my professional life.", "reverseGuess": false },
+        { "id": "3.4", "text": "I am comfortable starting new projects in my personal life.", "reverseGuess": false },
+        { "id": "3.5", "text": "I like to work in big teams that gather many different competencies.", "reverseGuess": false },
+        { "id": "3.6", "text": "I like to work with other people in a collaborative way.", "reverseGuess": false },
+        { "id": "3.7", "text": "I am frequently the person bringing new projects or ideas to the table and taking charge.", "reverseGuess": false },
+        { "id": "3.8", "text": "I am frequently the person bringing new projects or ideas to the table.", "reverseGuess": false }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Ability to solve problems",
+      "questions": [
+        { "id": "4.1", "text": "When a problem occurs, I tend to solve it immediately.", "reverseGuess": false },
+        { "id": "4.2", "text": "I feel in charge of solving the problems I encounter.", "reverseGuess": false },
+        { "id": "4.3", "text": "Problem‑solving is an easy competency to master.", "reverseGuess": false },
+        { "id": "4.4", "text": "I often hesitate and take time before starting to solve a problem.", "reverseGuess": true },
+        { "id": "4.5", "text": "Solutions are things you build, not something you find.", "reverseGuess": false }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Ability to create value",
+      "questions": [
+        { "id": "5.1", "text": "I tend to fall in love with my first ideas.", "reverseGuess": true },
+        { "id": "5.2", "text": "I have a personal method to measure the impact of my actions.", "reverseGuess": false },
+        { "id": "5.3", "text": "I regularly try to measure the impact of my actions on other people.", "reverseGuess": false },
+        { "id": "5.4", "text": "Before taking a decision, I consult the people impacted by it.", "reverseGuess": false },
+        { "id": "5.5", "text": "I have a sound process to collect feedback.", "reverseGuess": false },
+        { "id": "5.6", "text": "I love optimizing situations to make the best of them.", "reverseGuess": false }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Ability to work with available resources",
+      "questions": [
+        { "id": "6.1", "text": "I know what I can do so that difficult situations do not become impossible.", "reverseGuess": false },
+        { "id": "6.2", "text": "I can maintain work‑life balance even under high pressure.", "reverseGuess": false },
+        { "id": "6.3", "text": "When I have an idea, I often think it will be too complicated to achieve.", "reverseGuess": true },
+        { "id": "6.4", "text": "I seldom hesitate to engage in new activities because I lack resources.", "reverseGuess": false },
+        { "id": "6.5", "text": "Lack of money, time, or means does not discourage me from taking action.", "reverseGuess": false }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Ability to make decisions under constraints",
+      "questions": [
+        { "id": "7.1", "text": "A zero‑risk policy can lead to poor decision‑making.", "reverseGuess": false },
+        { "id": "7.2", "text": "I can make up my mind easily when facing contradictory information.", "reverseGuess": false },
+        { "id": "7.3", "text": "Even if circumstances are not favorable, I still take action.", "reverseGuess": false },
+        { "id": "7.4", "text": "I do not need a stable work environment or processes to thrive.", "reverseGuess": false },
+        { "id": "7.5", "text": "I do not get stressed easily.", "reverseGuess": false }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Timely achiever",
+      "questions": [
+        { "id": "8.1", "text": "I know when it is time to act and when to give up.", "reverseGuess": false },
+        { "id": "8.2", "text": "I do not procrastinate to the point that it prevents action.", "reverseGuess": false },
+        { "id": "8.3", "text": "I am comfortable acting even if I am unsure.", "reverseGuess": false },
+        { "id": "8.4", "text": "I am good at dealing with time pressure.", "reverseGuess": false },
+        { "id": "8.5", "text": "I am comfortable leading big projects and ensuring they finish on time.", "reverseGuess": false }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Determination, persistence, and resilience",
+      "questions": [
+        { "id": "9.1", "text": "I persist and try again when things do not work out as expected.", "reverseGuess": false },
+        { "id": "9.2", "text": "I change the organization of my work whenever necessary.", "reverseGuess": false },
+        { "id": "9.3", "text": "I am never ashamed of changing a plan I have already communicated.", "reverseGuess": false },
+        { "id": "9.4", "text": "I do not easily give up when things become complicated.", "reverseGuess": false },
+        { "id": "9.5", "text": "I am not easily discouraged by unsatisfying results.", "reverseGuess": false }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Promoter and relationship builder",
+      "questions": [
+        { "id": "10.1", "text": "I am comfortable convincing others to get buy‑in for my ideas.", "reverseGuess": false },
+        { "id": "10.2", "text": "I am comfortable communicating about myself and my opinions.", "reverseGuess": false },
+        { "id": "10.3", "text": "I update people I work with on important matters regularly.", "reverseGuess": false },
+        { "id": "10.4", "text": "I actively connect with people outside my usual environment.", "reverseGuess": false },
+        { "id": "10.5", "text": "I maintain and nurture an extensive network.", "reverseGuess": false },
+        { "id": "10.6", "text": "Asking others for solutions often helps me solve problems.", "reverseGuess": false }
+      ]
+    }
+  ]
+}
