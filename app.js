@@ -217,7 +217,6 @@ function renderResults() {
   $("#resultsTable").innerHTML = rowsHtml;
 
   // --- Radar chart (INSIDE renderResults) ---
-  const pointColors = labels.map(t => colorBySection[t]);
 
   if (window.Chart) {
     try {
@@ -226,7 +225,6 @@ function renderResults() {
       chart = new Chart($("#chart").getContext("2d"), {
         type: "radar",
         data: {
-          labels,
           datasets: [{
             label: "Average score",
             data: values,
