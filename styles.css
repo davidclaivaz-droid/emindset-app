@@ -165,3 +165,8 @@ button:disabled{opacity:.55;cursor:not-allowed}
   text-overflow:ellipsis;
 }
 .legend-score{font-weight:800}
+
+
+.questionnaire {
+  scroll-margin-top: 110px;
+}
