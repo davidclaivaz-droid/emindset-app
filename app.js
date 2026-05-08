@@ -197,7 +197,6 @@ function renderResults() {
     : Object.keys(colorBySection);
 
   // Build breakdown table
-  const rowsHtml = sectionTitles.map(title => {
     const avg = averages[title];
     const used = counts[title] || 0;
     const color = colorBySection[title];
