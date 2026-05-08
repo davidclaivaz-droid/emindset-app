@@ -1,0 +1,18 @@
+
+{
+  "meta": {
+    "title": "Entrepreneurial Mindset – Self‑Assessment"
+  },
+  "sections": [
+    {
+      "title": "Creative thinking and information seeking",
+      "questions": [
+        {
+          "id": "1.1",
+          "text": "I regularly use group brain‑storming sessions.",
+          "reverseGuess": false
+        }
+      ]
+    }
+  ]
+}

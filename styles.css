@@ -1,0 +1,40 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0b0f14;
+  color: #e7eef7;
+  margin: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 16px;
+  background: #4f8cff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.section {
+  background: #121826;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.question {
+  margin-bottom: 12px;
+}
+
+.hidden {
+  display: none;
+}

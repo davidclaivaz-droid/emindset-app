@@ -1,0 +1,33 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entrepreneurial Mindset – Self‑Assessment</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="app-header">
+    <h1>Entrepreneurial Mindset – Self‑Assessment</h1>
+    <p class="subtitle">Answer each statement and view your results.</p>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <button id="btnShowResults">Show results</button>
+    </section>
+
+    <section id="questionnaire"></section>
+
+    <section id="results" class="hidden">
+      <h2>Results</h2>
+      <canvas id="chart" height="240"></canvas>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
