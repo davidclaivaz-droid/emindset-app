@@ -132,8 +132,12 @@ document.getElementById('btnShowResults')
   ${section.title}
 </span>
 
-        </div>
-        <span class="results-score">${score.toFixed(2)}</span>
+        </div>       
+<span class="results-score"
+      style="color:${palette[index % palette.length]}">
+  ${score.toFixed(2)}
+</span>
+
       `;
 
       resultsTable.appendChild(row);
