@@ -155,4 +155,8 @@ document.getElementById('btnShowResults')
       }
     });
   
-  }); // closes .then(data => { ... })
+
+ }); // ✅ END OF CLICK HANDLER
+
+});   // ✅ END OF fetch().then(data => { ... })
+
