@@ -152,6 +152,8 @@ resultsTable.appendChild(row);
 
     });
 
+
+    
     // ---- SHOW RESULTS ----
     document.getElementById('results').classList.remove('hidden');
 
