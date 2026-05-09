@@ -119,28 +119,37 @@ document.getElementById('btnShowResults')
       const score = scores[section.title];
       if (score == null) return;
 
-      const row = document.createElement("div");
-      row.className = "results-row";
+      
+const row = document.createElement("div");
+row.className = "results-row";
 
-      row.innerHTML = `
-        <div class="results-left">
-          <span class="results-dot"
-                style="background:${palette[index % palette.length]}"></span>
-         
-<span class="results-title"
-      style="color:${palette[index % palette.length]}">
-  ${section.title}
-</span>
+const left = document.createElement("div");
+left.className = "results-left";
 
-        </div>       
-<span class="results-score"
-      style="color:${palette[index % palette.length]}">
-  ${score.toFixed(2)}
-</span>
+const color = palette[index % palette.length];
 
-      `;
+const dot = document.createElement("span");
+dot.className = "results-dot";
+dot.style.backgroundColor = color;
 
-      resultsTable.appendChild(row);
+const title = document.createElement("span");
+title.className = "results-title";
+title.textContent = section.title;
+title.style.color = color;   // ✅ FORCE color
+
+left.appendChild(dot);
+left.appendChild(title);
+
+const value = document.createElement("span");
+value.className = "results-score";
+value.textContent = score.toFixed(2);
+value.style.color = color;   // ✅ FORCE color
+
+row.appendChild(left);
+row.appendChild(value);
+
+resultsTable.appendChild(row);
+
     });
 
     // ---- SHOW RESULTS ----
