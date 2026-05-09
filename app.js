@@ -156,20 +156,7 @@ document.getElementById('btnShowResults')
     });
 
   });
-
-    
-
-
-        new Chart(document.getElementById('chart'), {
-          type: 'bar',
-          data: {
-            labels: Object.keys(scores),
-            datasets: [{
-              data: Object.values(scores)
-            }]
-          }
-        });
-
-      });
+  
+   
 
   });
