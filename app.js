@@ -7,12 +7,22 @@ fetch('questions.json')
     const answers = {};
 
 
+
 function updateProgress(answerCount, total) {
+  const percent = total === 0
+    ? 0
+    : Math.round((answerCount / total) * 100);
+
   document.getElementById("progressText").textContent =
     `Answered ${answerCount} / ${total}`;
+
+  document.getElementById("progressPercent").textContent =
+    `${percent}%`;
+
   document.getElementById("progressBar").style.width =
-    `${Math.round((answerCount / total) * 100)}%`;
+    `${percent}%`;
 }
+
 
     
     data.sections.forEach(section => {
