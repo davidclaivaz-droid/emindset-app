@@ -157,6 +157,3 @@ document.getElementById('btnShowResults')
 
   });
   
-   
-
-  });
