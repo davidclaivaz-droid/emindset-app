@@ -154,6 +154,4 @@ document.getElementById('btnShowResults')
         }
       }
     });
-
-  });
   
