@@ -126,7 +126,12 @@ document.getElementById('btnShowResults')
         <div class="results-left">
           <span class="results-dot"
                 style="background:${palette[index % palette.length]}"></span>
-          <span class="results-title">${section.title}</span>
+         
+<span class="results-title"
+      style="color:${palette[index % palette.length]}">
+  ${section.title}
+</span>
+
         </div>
         <span class="results-score">${score.toFixed(2)}</span>
       `;
