@@ -6,6 +6,15 @@ fetch('questions.json')
     const container = document.getElementById('questionnaire');
     const answers = {};
 
+
+function updateProgress(answerCount, total) {
+  document.getElementById("progressText").textContent =
+    `Answered ${answerCount} / ${total}`;
+  document.getElementById("progressBar").style.width =
+    `${Math.round((answerCount / total) * 100)}%`;
+}
+
+    
     data.sections.forEach(section => {
       const sectionDiv = document.createElement('div');
       sectionDiv.className = 'section';
