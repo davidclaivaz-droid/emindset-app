@@ -141,6 +141,38 @@ data.sections.forEach((section, index) => {
           }
         });
 
+
+// ---- CATEGORY BREAKDOWN ----
+const resultsTable = document.getElementById("resultsTable");
+resultsTable.innerHTML = "";
+
+const palette = [
+  "#4f8cff","#2bd4a7","#ffb020","#ff6b6b","#a78bfa",
+  "#22c55e","#e879f9","#60a5fa","#f97316","#facc15"
+];
+
+// Preserve Excel order
+data.sections.forEach((section, index) => {
+  const score = scores[section.title];
+  if (score == null) return;
+
+  const row = document.createElement("div");
+  row.className = "results-row";
+
+  row.innerHTML = `
+    <div class="results-left">
+      <span class="results-dot" style="background:${palette[index % palette.length]}"></span>
+      <span class="results-title">${section.title}</span>
+    </div>
+    <span class="results-score">${score.toFixed(2)}</span>
+  `;
+
+  resultsTable.appendChild(row);
+});
+
+document.getElementById('results').classList.remove('hidden');
+
+        
         document.getElementById('results').classList.remove('hidden');
 
         new Chart(document.getElementById('chart'), {
