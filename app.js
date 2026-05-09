@@ -118,62 +118,83 @@ data.sections.forEach((section, index) => {
  
     
 
-    document.getElementById('btnShowResults')
-      .addEventListener('click', () => {
+document.getElementById('btnShowResults')
+  .addEventListener('click', () => {
 
-        const scores = {};
+    // ---- COMPUTE SCORES ----
+    const scores = {};
 
-        data.sections.forEach(section => {
-          let sum = 0;
-          let count = 0;
+    data.sections.forEach(section => {
+      let sum = 0;
+      let count = 0;
 
-          section.questions.forEach(q => {
-            if (answers[q.id]) {
-              let v = answers[q.id];
-              if (q.reverseGuess) v = 6 - v;
-              sum += v;
-              count++;
-            }
-          });
+      section.questions.forEach(q => {
+        if (answers[q.id]) {
+          let v = answers[q.id];
+          if (q.reverseGuess) v = 6 - v;
+          sum += v;
+          count++;
+        }
+      });
 
-          if (count > 0) {
-            scores[section.title] = sum / count;
-          }
-        });
+      if (count > 0) {
+        scores[section.title] = sum / count;
+      }
+    });
 
+    // ---- CATEGORY BREAKDOWN ----
+    const resultsTable = document.getElementById("resultsTable");
+    resultsTable.innerHTML = "";
 
-// ---- CATEGORY BREAKDOWN ----
-const resultsTable = document.getElementById("resultsTable");
-resultsTable.innerHTML = "";
+    const palette = [
+      "#4f8cff","#2bd4a7","#ffb020","#ff6b6b","#a78bfa",
+      "#22c55e","#e879f9","#60a5fa","#f97316","#facc15"
+    ];
 
-const palette = [
-  "#4f8cff","#2bd4a7","#ffb020","#ff6b6b","#a78bfa",
-  "#22c55e","#e879f9","#60a5fa","#f97316","#facc15"
-];
+    data.sections.forEach((section, index) => {
+      const score = scores[section.title];
+      if (score == null) return;
 
-// Preserve Excel order
-data.sections.forEach((section, index) => {
-  const score = scores[section.title];
-  if (score == null) return;
+      const row = document.createElement("div");
+      row.className = "results-row";
 
-  const row = document.createElement("div");
-  row.className = "results-row";
+      row.innerHTML = `
+        <div class="results-left">
+          <span class="results-dot"
+                style="background:${palette[index % palette.length]}"></span>
+          <span class="results-title">${section.title}</span>
+        </div>
+        <span class="results-score">${score.toFixed(2)}</span>
+      `;
 
-  row.innerHTML = `
-    <div class="results-left">
-      <span class="results-dot" style="background:${palette[index % palette.length]}"></span>
-      <span class="results-title">${section.title}</span>
-    </div>
-    <span class="results-score">${score.toFixed(2)}</span>
-  `;
+      resultsTable.appendChild(row);
+    });
 
-  resultsTable.appendChild(row);
-});
+    // ---- SHOW RESULTS ----
+    document.getElementById('results').classList.remove('hidden');
 
-document.getElementById('results').classList.remove('hidden');
+    // ---- BAR CHART (unchanged for now) ----
+    new Chart(document.getElementById('chart'), {
+      type: 'bar',
+      data: {
+        labels: Object.keys(scores),
+        datasets: [{
+          data: Object.values(scores),
+          backgroundColor: Object.keys(scores)
+            .map((_, i) => palette[i % palette.length])
+        }]
+      },
+      options: {
+        scales: {
+          y: { min: 1, max: 5 }
+        }
+      }
+    });
 
-        
-        document.getElementById('results').classList.remove('hidden');
+  });
+
+    
+
 
         new Chart(document.getElementById('chart'), {
           type: 'bar',
