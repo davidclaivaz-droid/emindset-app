@@ -32,48 +32,54 @@ function updateProgress(answerCount, total) {
 }
 
 
-    
-    data.sections.forEach(section => {
-      const sectionDiv = document.createElement('div');
-      sectionDiv.className = 'section';
-      sectionDiv.innerHTML = `
-        <h3>${section.title}</h3>
-      `;
+// 1) Flatten all questions with their section title kept internally
+const allQuestions = [];
 
-      section.questions.forEach(q => {
-        const qDiv = document.createElement('div');
-        qDiv.className = 'question';
-        qDiv.innerHTML = `
-          <div>${q.text}</div>
-          <div>
-            ${[1,2,3,4,5].map(v => `
-              <label>
-                <input type="radio" name="${q.id}" value="${v}">
-                ${v}
-              </label>
-            `).join(' ')}
-          </div>
-        `;
-
-        qDiv.querySelectorAll('input').forEach(input => {
-          input.addEventListener('change', e => {
-            
-answers[q.id] = Number(e.target.value);
-
-updateProgress(
-  Object.keys(answers).length,
-  data.sections.reduce((n, s) => n + s.questions.length, 0)
-);
-
-            
-          });
-        });
-
-        sectionDiv.appendChild(qDiv);
-      });
-
-      container.appendChild(sectionDiv);
+data.sections.forEach(section => {
+  section.questions.forEach(q => {
+    allQuestions.push({
+      ...q,
+      sectionTitle: section.title
     });
+  });
+});
+
+// 2) Shuffle questions on every reload
+shuffle(allQuestions);
+
+// 3) Render as a single list (no category titles)
+allQuestions.forEach(q => {
+  const qDiv = document.createElement('div');
+  qDiv.className = 'question';
+
+  qDiv.innerHTML = `
+    <div>${q.text}</div>
+    <div>
+      ${[1,2,3,4,5].map(v => `
+        <label>
+          <input type="radio" name="${q.id}" value="${v}">
+          ${v}
+        </label>
+      `).join(' ')}
+    </div>
+  `;
+
+  qDiv.querySelectorAll('input').forEach(input => {
+    input.addEventListener('change', e => {
+      answers[q.id] = Number(e.target.value);
+
+      updateProgress(
+        Object.keys(answers).length,
+        allQuestions.length
+      );
+    });
+  });
+
+  container.appendChild(qDiv);
+});
+
+    
+    
 
     document.getElementById('btnShowResults')
       .addEventListener('click', () => {
