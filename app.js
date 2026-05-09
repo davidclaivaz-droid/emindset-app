@@ -71,12 +71,25 @@ function updateProgress(answerCount, total) {
 
       document.getElementById('results').classList.remove('hidden');
 
-      new Chart(document.getElementById('chart'), {
-        type: 'bar',
-        data: {
-          labels: Object.keys(scores),
-          datasets: [{ data: Object.values(scores) }]
-        }
-      });
+
+const labels = Object.keys(scores);
+
+// stable color palette
+const palette = [
+  "#4f8cff","#2bd4a7","#ffb020","#ff6b6b","#a78bfa",
+  "#22c55e","#e879f9","#60a5fa","#f97316","#facc15"
+];
+
+new Chart(document.getElementById('chart'), {
+  type: 'bar',
+  data: {
+    labels,
+    datasets: [{
+      data: Object.values(scores),
+      backgroundColor: labels.map((_, i) => palette[i % palette.length])
+    }]
+  },
+  opt
+
     });
   });
