@@ -157,20 +157,53 @@ resultsTable.appendChild(row);
 
     // ---- BAR CHART (unchanged for now) ----
     new Chart(document.getElementById('chart'), {
-      type: 'bar',
+      type: 'radar',
       data: {
         labels: Object.keys(scores),
-        datasets: [{
-          data: Object.values(scores),
-          backgroundColor: Object.keys(scores)
-            .map((_, i) => palette[i % palette.length])
-        }]
+        
+datasets: [{
+  label: 'Category score',
+  data: Object.values(scores),
+  fill: true,
+  backgroundColor: 'rgba(79, 140, 255, 0.2)',
+  borderColor: 'rgba(79, 140, 255, 0.9)',
+  borderWidth: 2,
+  pointBackgroundColor: Object.keys(scores)
+    .map((_, i) => palette[i % palette.length]),
+  pointBorderColor: '#ffffff',
+  pointBorderWidth: 1,
+  pointRadius: 4
+}]
+
       },
-      options: {
-        scales: {
-          y: { min: 1, max: 5 }
-        }
+      
+options: {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    r: {
+      min: 1,
+      max: 5,
+      ticks: {
+        stepSize: 1,
+        showLabelBackdrop: false
+      },
+      grid: {
+        color: 'rgba(0,0,0,0.08)'
+      },
+      angleLines: {
+        color: 'rgba(0,0,0,0.15)'
+      },
+      pointLabels: {
+        font: { size: 12 }
       }
+    }
+  },
+  plugins: {
+    legend: { display: false }
+  }
+}
+
     });
   
 
