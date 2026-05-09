@@ -37,6 +37,14 @@ fetch('questions.json')
       container.appendChild(sectionDiv);
     });
 
+
+function updateProgress(answerCount, total) {
+  document.getElementById("progressText").textContent =
+    `Answered ${answerCount} / ${total}`;
+  document.getElementById("progressBar").style.width =
+    `${Math.round((answerCount / total) * 100)}%`;
+}
+    
     document.getElementById('btnShowResults').addEventListener('click', () => {
       const scores = {};
       data.sections.forEach(section => {
