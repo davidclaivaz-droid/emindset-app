@@ -197,8 +197,18 @@ options: {
         color: 'rgba(0,0,0,0.15)'
       },
       pointLabels: {
-        font: { size: 12 }
-      }
+        
+  font: {
+    size: 14,
+    weight: 'bold'
+  },
+  padding: 5,   // ⬅ brings labels closer to points
+  color: (context) => {
+    const index = context.index;
+    return palette[index % palette.length];
+  }
+}
+
     }
   },
   plugins: {
