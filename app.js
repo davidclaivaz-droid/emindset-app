@@ -53,15 +53,16 @@ allQuestions.forEach(q => {
   qDiv.className = 'question';
 
   qDiv.innerHTML = `
-    <div>${q.text}</div>
-    <div>
-      ${[1,2,3,4,5].map(v => `
-        <label>
-          <input type="radio" name="${q.id}" value="${v}">
-          ${v}
-        </label>
-      `).join(' ')}
-    </div>
+    <div>${q.text}</div>  
+<div class="scale">
+  ${[1,2,3,4,5].map(v => `
+    <label class="scale-option">
+      <input type="radio" name="${q.id}" value="${v}">
+      <span>${v}</span>
+    </label>
+  `).join('')}
+</div>
+
   `;
 
   qDiv.querySelectorAll('input').forEach(input => {
