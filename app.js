@@ -39,7 +39,15 @@ function updateProgress(answerCount, total) {
 
         qDiv.querySelectorAll('input').forEach(input => {
           input.addEventListener('change', e => {
-            answers[q.id] = Number(e.target.value);
+            
+answers[q.id] = Number(e.target.value);
+
+updateProgress(
+  Object.keys(answers).length,
+  data.sections.reduce((n, s) => n + s.questions.length, 0)
+);
+
+            
           });
         });
 
