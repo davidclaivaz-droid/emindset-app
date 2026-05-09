@@ -155,3 +155,4 @@ document.getElementById('btnShowResults')
       }
     });
   
+  }); // closes .then(data => { ... })
