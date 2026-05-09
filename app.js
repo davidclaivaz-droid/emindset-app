@@ -80,42 +80,6 @@ allQuestions.forEach(q => {
 });
 
    
-const resultsTable = document.getElementById("resultsTable");
-resultsTable.innerHTML = "";
-
-// Use Excel order from questions.json
-data.sections.forEach((section, index) => {
-  const score = scores[section.title];
-
-  if (score == null) return;
-
-  const row = document.createElement("div");
-  row.className = "results-row";
-
-  const left = document.createElement("div");
-  left.className = "results-left";
-
-  const dot = document.createElement("span");
-  dot.className = "results-dot";
-  dot.style.backgroundColor = palette[index % palette.length];
-
-  const title = document.createElement("span");
-  title.className = "results-title";
-  title.textContent = section.title;
-
-  left.appendChild(dot);
-  left.appendChild(title);
-
-  const value = document.createElement("span");
-  value.className = "results-score";
-  value.textContent = score.toFixed(2);
-
-  row.appendChild(left);
-  row.appendChild(value);
-
-  resultsTable.appendChild(row);
-});
- 
     
 
 document.getElementById('btnShowResults')
